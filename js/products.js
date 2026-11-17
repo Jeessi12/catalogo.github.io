@@ -17,6 +17,24 @@ const products = [
     imagen: "img/productos/taza tradicional 3.65$.jpeg"
   },
   {
+    id: "jarra-colores-calidos-frios",
+    nombre: "Jarra de colores: amarillo, verde o azul",
+    categoria: "Jarras",
+    descripcion: "Jarra disponible en amarillo, verde y azul. Precio por unidad.",
+    colores: "amarillo, verde o azul",
+    precio: 10.00,
+    imagen: "img/productos/Jarras mas de  5 colores en esta imagen hay amarillo,verde,azul 10$..jpeg"
+  },
+  {
+    id: "jarra-colores-vibrantes",
+    nombre: "Jarra de colores: morado, rosa, naranja o rojo",
+    categoria: "Jarras",
+    descripcion: "Jarra disponible en morado, rosa, naranja y rojo. Precio por unidad.",
+    colores: "morado, rosa, naranja o rojo",
+    precio: 10.00,
+    imagen: "img/productos/Jarras mas de  5 colores en esta imagen hay morado rosa naranja rojo 10$.jpeg"
+  },
+  {
     id: "borrador-artesco",
     nombre: "Borrador Artesco",
     categoria: "articulos-escolares",

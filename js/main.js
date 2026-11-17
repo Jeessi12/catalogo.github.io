@@ -1,6 +1,6 @@
 // Cambia este número por el de WhatsApp, con código de país y solo dígitos.
 const whatsappNumber = "50371770106";
-const defaultMessage = "Hola, vi su catálogo de Variedades Rivas y me gustaría más información";
+const defaultMessage = "Hola, vi el catálogo de Sublishop Lopez y me gustaría más información";
 
 const categoryFilters = document.querySelector("#category-filters");
 const productGrids = new Map(
@@ -48,6 +48,7 @@ function renderFilters() {
     { value: "Todos", label: "Todos" },
     { value: "Tazas bicolor", label: "Tazas bicolor" },
     { value: "Tazas tradicionales", label: "Tazas tradicionales" },
+    { value: "Jarras", label: "Jarras" },
     { value: "articulos-escolares", label: "Artículos escolares" }
   ];
   categoryFilters.replaceChildren();
@@ -67,9 +68,12 @@ function renderProducts() {
   emptyState.hidden = visibleProducts.length > 0;
 
   productLines.forEach((line) => {
-    line.hidden = activeCategory === "articulos-escolares"
-      ? line.dataset.productLine === "tazas"
-      : activeCategory !== "Todos" && line.dataset.productLine === "articulos-escolares";
+    const lineCategory = line.dataset.productLine;
+    line.hidden = activeCategory !== "Todos" && (
+      lineCategory === "tazas"
+        ? !activeCategory.startsWith("Tazas")
+        : lineCategory !== activeCategory
+    );
   });
 
   productSubcategories.forEach((section) => {
@@ -141,7 +145,10 @@ function openProduct(product) {
   title.id = "dialog-title";
   const description = makeElement("p", "dialog-description", product.descripcion);
   const orderButton = makeElement("a", "button dialog-whatsapp", "Pedir por WhatsApp");
-  orderButton.href = whatsappUrl(`Hola, me interesa el producto ${product.nombre} de Variedades Rivas.`);
+  const orderMessage = product.colores
+    ? `Hola, me interesa esta jarra de Sublishop Lopez. Mi color preferido es: [indica uno] (${product.colores}).`
+    : `Hola, me interesa el producto ${product.nombre} de Sublishop Lopez.`;
+  orderButton.href = whatsappUrl(orderMessage);
   orderButton.target = "_blank";
   orderButton.rel = "noopener noreferrer";
 
